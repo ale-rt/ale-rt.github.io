@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+ <sitemap>
+  <loc>http://ale-rt.github.io/categories/plone.xml</loc>
+  <lastmod>2014-12-08</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://ale-rt.github.io/galleries/rss.xml</loc>
+  <lastmod>2014-12-08</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://ale-rt.github.io/it/categories/plone.xml</loc>
+  <lastmod>2014-12-08</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://ale-rt.github.io/it/galleries/rss.xml</loc>
+  <lastmod>2014-12-08</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://ale-rt.github.io/it/rss.xml</loc>
+  <lastmod>2014-12-08</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://ale-rt.github.io/rss.xml</loc>
+  <lastmod>2014-12-08</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://ale-rt.github.io/sitemap.xml</loc>
+  <lastmod>2014-12-08</lastmod>
+ </sitemap>
+</sitemapindex>
