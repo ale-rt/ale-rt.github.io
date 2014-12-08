@@ -162,6 +162,8 @@
 
 
 <p>The reason is that the add and edit form classes for the portlets are expected to have an attribute called <code>schema</code> that should be equal to the interface defining the portlet fields. In Plone&lt;=4 that interfaced was used to fill an attribute called <code>form_fields</code>.</p>
+<!-- TEASER_END -->
+
 <p>The easiest way to support <strong>both</strong> Plone 5 and Plone&lt;=4, is just to add a <code>schema</code> class attribute equal to the interface you are using:</p>
 <pre class="code literal-block"> class AddForm(base.AddForm):
 <span class="gi">+    schema = IExamplePortlet</span>
@@ -177,6 +179,7 @@
 </pre>
 
 
+<p>In many cases this is all you have to do. If you run in other troubles please leave a comment and will try to update this post.</p>
 <p>If you want your code to behave differently according to the Plone version you are using, you may want to use the utility function <code>getFSVersionTuple</code> to check for the running version of Plone. You can start from this example</p>
 <pre class="code literal-block"><span class="gi">+from Products.CMFPlone.utils import getFSVersionTuple</span>
 <span class="gi">+</span>

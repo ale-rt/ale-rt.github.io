@@ -19,6 +19,8 @@ NotImplementedError: The class deriving from AutoExtensibleForm must have a 'sch
 
 The reason is that the add and edit form classes for the portlets are expected to have an attribute called `schema` that should be equal to the interface defining the portlet fields. In Plone<=4 that interfaced was used to fill an attribute called `form_fields`.
 
+<!-- TEASER_END -->
+
 The easiest way to support **both** Plone 5 and Plone<=4, is just to add a `schema` class attribute equal to the interface you are using:
 
 ```diff
@@ -34,6 +36,8 @@ The easiest way to support **both** Plone 5 and Plone<=4, is just to add a `sche
 +    schema = IExamplePortlet
      form_fields = form.Fields(IExamplePortlet)
 ```
+
+In many cases this is all you have to do. If you run in other troubles please leave a comment and will try to update this post.
 
 If you want your code to behave differently according to the Plone version you are using, you may want to use the utility function `getFSVersionTuple` to check for the running version of Plone. You can start from this example
 
