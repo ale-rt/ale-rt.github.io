@@ -5,16 +5,32 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
+  <loc>http://ale-rt.github.io/categories/nikola.xml</loc>
+  <lastmod>2014-12-28</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>http://ale-rt.github.io/categories/plone.xml</loc>
-  <lastmod>2014-12-08</lastmod>
+  <lastmod>2014-12-28</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://ale-rt.github.io/categories/python.xml</loc>
+  <lastmod>2014-12-28</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://ale-rt.github.io/galleries/rss.xml</loc>
   <lastmod>2014-12-08</lastmod>
  </sitemap>
  <sitemap>
+  <loc>http://ale-rt.github.io/it/categories/nikola.xml</loc>
+  <lastmod>2014-12-28</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>http://ale-rt.github.io/it/categories/plone.xml</loc>
-  <lastmod>2014-12-08</lastmod>
+  <lastmod>2014-12-28</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://ale-rt.github.io/it/categories/python.xml</loc>
+  <lastmod>2014-12-28</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://ale-rt.github.io/it/galleries/rss.xml</loc>
@@ -22,11 +38,11 @@
  </sitemap>
  <sitemap>
   <loc>http://ale-rt.github.io/it/rss.xml</loc>
-  <lastmod>2014-12-08</lastmod>
+  <lastmod>2014-12-28</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://ale-rt.github.io/rss.xml</loc>
-  <lastmod>2014-12-08</lastmod>
+  <lastmod>2014-12-28</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://ale-rt.github.io/sitemap.xml</loc>

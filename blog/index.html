@@ -94,6 +94,53 @@
 <div class="postindex">
     <article class="h-entry post-text">
     <header>
+        <h1 class="p-name entry-title"><a href="../posts/how-to-exclude-pages-from-nikola-sitemap.html" class="u-url">How to exclude pages from Nikola sitemap</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">Alessandro Pisa - @ale_pisa</span></p>
+            <p class="dateline"><a href="../posts/how-to-exclude-pages-from-nikola-sitemap.html" rel="bookmark"><time class="published dt-published" datetime="2014-12-28T11:59:12+01:00" itemprop="datePublished" title="2014-12-28 11:59">2014-12-28 11:59</time></a></p>
+                <p class="commentline">
+        
+</p>
+<div class="g-commentcount" data-href="/posts/how-to-exclude-pages-from-nikola-sitemap.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script>
+
+
+        </div>
+    </header>
+    <div class="e-content entry-content">
+    <div>
+<h3>Short answer</h3>
+<p>You should have a line like this in your <code>conf.py</code> file:</p>
+<pre class="code literal-block"><span class="n">ROBOTS_EXCLUSIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s">"/404.html"</span><span class="p">,</span> <span class="s">"/*/404.html"</span><span class="p">]</span>
+</pre>
+
+
+<p>As you can see you the exclusion list works with both exact URLs or expressions containing wildcards.</p>
+<h3>Long answer — tl;dr</h3>
+<p>When you publish a site on <strong>github pages</strong> you can add a <code>404.html</code>. That page will be served each time you look for a not existing resource.</p>
+<p>This can happen, for example, because you followed a broken link, mistyped a URL or the URL refers to a content that was moved or removed.</p>
+<p>I use <a href="http://getnikola.com/">Nikola</a> to generate my site on github pages and of course I use it to generate my <code>404.html</code>.</p>
+<p>Nikola is really smart and does a lot lot of stuff for you, for example it generates a <a href="../sitemap.xml"><code>sitemap.xml</code></a> that keeps track of all the pages it creates and manages.</p>
+<p>The <code>sitemap.xml</code> is used, for example, by search engine to index your website, so you really want to have it in order.</p>
+<p>If you let Nikola handle the 404.html page you will have to instruct the software to threat it in a special way, in order to not avoid those lines in your <code>sitemap.xml</code>:</p>
+<pre class="code literal-block"><span class="nt">&lt;url&gt;</span>
+  <span class="nt">&lt;loc&gt;</span>http://ale-rt.github.io/it/404.html<span class="nt">&lt;/loc&gt;</span>
+  <span class="nt">&lt;lastmod&gt;</span>2014-12-08<span class="nt">&lt;/lastmod&gt;</span>
+<span class="nt">&lt;/url&gt;</span>
+</pre>
+
+
+<p>Otherwise the web crawlers will get upset because the http status from github pages will be (like you can guess) 404 Not found!</p>
+<p>Fiddling with the <code>ROBOTS_EXCLUSIONS</code> variable as shown at the beginning of the article will just make this work for you.</p>
+<h3>Final remark about wildcards</h3>
+<p>Not every robot understands wildcards. So, if your goal is just to exclude the <code>404.html</code> from the sitemap your are fine with the lines shown at the beginning of the article, otherwise you may want to be more explicit:</p>
+<pre class="code literal-block"><span class="n">ROBOTS_EXCLUSIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s">"/404.html"</span><span class="p">,</span> <span class="s">"/it/404.html"</span><span class="p">]</span>
+</pre>
+</div>
+    </div>
+    </article>
+    <article class="h-entry post-text">
+    <header>
         <h1 class="p-name entry-title"><a href="../posts/how-to-port-plone4-portlets-to-plone5.html" class="u-url">How-to port Plone4 portlets to Plone5</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn">Alessandro Pisa - @ale_pisa</span></p>
