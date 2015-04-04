@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>@ale_pisa (Plone5)</title><link>http://ale-rt.github.io</link><description></description><atom:link href="http://ale-rt.github.io/categories/plone5.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sat, 04 Apr 2015 13:01:30 GMT</lastBuildDate><generator>http://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Notes on Plone5 migration</title><link>http://ale-rt.github.io/posts/notes-on-plone5-migration.html</link><dc:creator>Alessandro Pisa - @ale_pisa</dc:creator><description>&lt;div&gt;&lt;h2&gt;Plone 5.0b1 is out&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Caveat&lt;/strong&gt;: This is &lt;strong&gt;work in progress&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The First beta of Plone 5 is in the wild and is performing really good.&lt;/p&gt;
+&lt;p&gt;It is time to start migrating our products.&lt;/p&gt;
+&lt;p&gt;On this page I am going to link all the resources I am finding
+about porting code from Plone 4 to Plone 5.&lt;/p&gt;
+&lt;h4&gt;Changed imports&lt;/h4&gt;
+&lt;p&gt;I will try to keep this list up to date.&lt;/p&gt;
+&lt;h5&gt;Import zope IIntIds from zope.intid (was zope.app.intid)&lt;/h5&gt;
+&lt;pre class="code literal-block"&gt;&lt;span class="gd"&gt;-from zope.app.intid.interfaces import IIntIds&lt;/span&gt;
+&lt;span class="gi"&gt;+from zope.intid.interfaces import IIntIds&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;h4&gt;Products you will not need anymore&lt;/h4&gt;
+&lt;p&gt;There a re some products that have been included/superseeded
+by Plone5 default packages.&lt;/p&gt;
+&lt;p&gt;Here a list of those and some instructions on how to remove them.&lt;/p&gt;
+&lt;h5&gt;wildcard.foldercontents&lt;/h5&gt;
+&lt;p&gt;Many of my sites where using &lt;strong&gt;wildcard.foldercontents&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;This is enough in most cases (not all):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;remove &lt;code&gt;wildcard.foldercontents&lt;/code&gt; your buildouts&lt;/li&gt;
+&lt;li&gt;remove &lt;code&gt;wildcard.foldercontents&lt;/code&gt; in your setup.py files&lt;/li&gt;
+&lt;li&gt;remove &lt;code&gt;&amp;lt;dependency&amp;gt;profile-wildcard.foldercontents:default&amp;lt;/dependency&amp;gt;&lt;/code&gt;
+   in your metadata.xml files&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In some other case you may have to search deeper in your code
+(python imports, template customizations, ...)&lt;/p&gt;
+&lt;h4&gt;Theme migration&lt;/h4&gt;
+&lt;p&gt;If your Plone 4 theme was based on "Sunburst Theme"
+remember to modify this: it should be based on "Plone Default".&lt;/p&gt;
+&lt;p&gt;You should do something similar:&lt;/p&gt;
+&lt;pre class="code literal-block"&gt;&lt;span class="gd"&gt;- &amp;lt;skin-path name="My Site Theme" based-on="Sunburst Theme"&amp;gt;&lt;/span&gt;
+&lt;span class="gi"&gt;+ &amp;lt;skin-path name="My Site Theme" based-on="Plone Default"&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;
+
+
+&lt;h4&gt;Portlets compatibility&lt;/h4&gt;
+&lt;p&gt;Do you want to port your portlets to Plone5?
+You have to port the to the new z3c.form machinery.
+Luckily &lt;a href="http://ale-rt.github.io/posts/how-to-port-plone4-portlets-to-plone5.html"&gt;this is really easy&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description><category>Plone</category><category>Plone5</category><guid>http://ale-rt.github.io/posts/notes-on-plone5-migration.html</guid><pubDate>Sat, 04 Apr 2015 12:17:02 GMT</pubDate></item></channel></rss>

@@ -71,7 +71,7 @@
                 
                     <li>
             </li>
-<li><a href="../it/blog/index.html" rel="alternate" hreflang="it">Italiano</a></li>
+<li><a href="http://ale-rt.github.io/it/" rel="alternate" hreflang="it">Italiano</a></li>
 
                 
                     
@@ -85,7 +85,7 @@
 
 <!-- End of Menubar -->
 
-<div class="container" id="content">
+<div class="container" id="content" role="main">
     <div class="body-content">
         <!--Body content-->
         <div class="row">
@@ -94,10 +94,72 @@
 <div class="postindex">
     <article class="h-entry post-text">
     <header>
+        <h1 class="p-name entry-title"><a href="../posts/notes-on-plone5-migration.html" class="u-url">Notes on Plone5 migration</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">Alessandro Pisa - @ale_pisa</span></p>
+            <p class="dateline"><a href="../posts/notes-on-plone5-migration.html" rel="bookmark"><time class="published dt-published" datetime="2015-04-04T14:17:02+02:00" title="2015-04-04 14:17">2015-04-04 14:17</time></a></p>
+                <p class="commentline">
+        
+</p>
+<div class="g-commentcount" data-href="/posts/notes-on-plone5-migration.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script>
+
+
+        </div>
+    </header>
+    <div class="e-content entry-content">
+    <div>
+<h2>Plone 5.0b1 is out</h2>
+<p><strong>Caveat</strong>: This is <strong>work in progress</strong>.</p>
+<p>The First beta of Plone 5 is in the wild and is performing really good.</p>
+<p>It is time to start migrating our products.</p>
+<p>On this page I am going to link all the resources I am finding
+about porting code from Plone 4 to Plone 5.</p>
+<h4>Changed imports</h4>
+<p>I will try to keep this list up to date.</p>
+<h5>Import zope IIntIds from zope.intid (was zope.app.intid)</h5>
+<pre class="code literal-block"><span class="gd">-from zope.app.intid.interfaces import IIntIds</span>
+<span class="gi">+from zope.intid.interfaces import IIntIds</span>
+</pre>
+
+
+<h4>Products you will not need anymore</h4>
+<p>There a re some products that have been included/superseeded
+by Plone5 default packages.</p>
+<p>Here a list of those and some instructions on how to remove them.</p>
+<h5>wildcard.foldercontents</h5>
+<p>Many of my sites where using <strong>wildcard.foldercontents</strong>.</p>
+<p>This is enough in most cases (not all):</p>
+<ul>
+<li>remove <code>wildcard.foldercontents</code> your buildouts</li>
+<li>remove <code>wildcard.foldercontents</code> in your setup.py files</li>
+<li>remove <code>&lt;dependency&gt;profile-wildcard.foldercontents:default&lt;/dependency&gt;</code>
+   in your metadata.xml files</li>
+</ul>
+<p>In some other case you may have to search deeper in your code
+(python imports, template customizations, ...)</p>
+<h4>Theme migration</h4>
+<p>If your Plone 4 theme was based on "Sunburst Theme"
+remember to modify this: it should be based on "Plone Default".</p>
+<p>You should do something similar:</p>
+<pre class="code literal-block"><span class="gd">- &lt;skin-path name="My Site Theme" based-on="Sunburst Theme"&gt;</span>
+<span class="gi">+ &lt;skin-path name="My Site Theme" based-on="Plone Default"&gt;</span>
+</pre>
+
+
+<h4>Portlets compatibility</h4>
+<p>Do you want to port your portlets to Plone5?
+You have to port the to the new z3c.form machinery.
+Luckily <a href="http://ale-rt.github.io/posts/how-to-port-plone4-portlets-to-plone5.html">this is really easy</a></p>
+</div>
+    </div>
+    </article>
+    <article class="h-entry post-text">
+    <header>
         <h1 class="p-name entry-title"><a href="../posts/how-to-exclude-pages-from-nikola-sitemap.html" class="u-url">How to exclude pages from Nikola sitemap</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn">Alessandro Pisa - @ale_pisa</span></p>
-            <p class="dateline"><a href="../posts/how-to-exclude-pages-from-nikola-sitemap.html" rel="bookmark"><time class="published dt-published" datetime="2014-12-28T11:59:12+01:00" itemprop="datePublished" title="2014-12-28 11:59">2014-12-28 11:59</time></a></p>
+            <p class="dateline"><a href="../posts/how-to-exclude-pages-from-nikola-sitemap.html" rel="bookmark"><time class="published dt-published" datetime="2014-12-28T11:59:12+01:00" title="2014-12-28 11:59">2014-12-28 11:59</time></a></p>
                 <p class="commentline">
         
 </p>
@@ -144,7 +206,7 @@
         <h1 class="p-name entry-title"><a href="../posts/how-to-port-plone4-portlets-to-plone5.html" class="u-url">How-to port Plone4 portlets to Plone5</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn">Alessandro Pisa - @ale_pisa</span></p>
-            <p class="dateline"><a href="../posts/how-to-port-plone4-portlets-to-plone5.html" rel="bookmark"><time class="published dt-published" datetime="2014-12-07T19:46:10+01:00" itemprop="datePublished" title="2014-12-07 19:46">2014-12-07 19:46</time></a></p>
+            <p class="dateline"><a href="../posts/how-to-port-plone4-portlets-to-plone5.html" rel="bookmark"><time class="published dt-published" datetime="2014-12-07T19:46:10+01:00" title="2014-12-07 19:46">2014-12-07 19:46</time></a></p>
                 <p class="commentline">
         
 </p>
@@ -233,7 +295,7 @@
         <!--End of body content-->
 
         <footer>
-            Contents © 2014         <a href="mailto:alessandro.pisa%5B@%5Dgmail.com">Alessandro Pisa - @ale_pisa</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            Contents © 2015         <a href="mailto:alessandro.pisa%5B@%5Dgmail.com">Alessandro Pisa - @ale_pisa</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
             
         </footer>
     </div>
@@ -264,7 +326,7 @@
 <!-- End of social buttons -->
 
 
-    <script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    <script>$('a.image-reference:not(.islink)').colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
     <!-- fancy dates -->
     <script>
     moment.locale("");

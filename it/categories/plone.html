@@ -2,7 +2,6 @@
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="it">
     <head>
     <meta charset="utf-8">
-    <meta name="description" content="Articoli su Plone">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Articoli su Plone | @ale_pisa</title>
 
@@ -46,7 +45,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="http://ale-rt.github.io/">
+            <a class="navbar-brand" href="http://ale-rt.github.io/it/">
 
                 <span id="blog-title">@ale_pisa</span>
             </a>
@@ -75,7 +74,7 @@
                 
                     <li>
             </li>
-<li><a href="../../blog/index.html" rel="alternate" hreflang="en">English</a></li>
+<li><a href="http://ale-rt.github.io/" rel="alternate" hreflang="en">English</a></li>
 
                 
                     
@@ -89,7 +88,7 @@
 
 <!-- End of Menubar -->
 
-<div class="container" id="content">
+<div class="container" id="content" role="main">
     <div class="body-content">
         <!--Body content-->
         <div class="row">
@@ -109,6 +108,9 @@
     </header>
     <ul class="postlist">
         <li>
+<a href="../posts/notes-on-plone5-migration.html" class="listtitle">Notes on Plone5 migration</a> <time class="listdate" datetime="2015-04-04T14:17:02+02:00" title="2015-04-04 14:17">2015-04-04 14:17</time>
+</li>
+        <li>
 <a href="../posts/how-to-port-plone4-portlets-to-plone5.html" class="listtitle">How-to port Plone4 portlets to Plone5</a> <time class="listdate" datetime="2014-12-07T19:46:10+01:00" title="2014-12-07 19:46">2014-12-07 19:46</time>
 </li>
     </ul>
@@ -118,7 +120,7 @@
         <!--End of body content-->
 
         <footer>
-            Contents © 2014         <a href="mailto:alessandro.pisa%5B@%5Dgmail.com">Alessandro Pisa - @ale_pisa</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            Contents © 2015         <a href="mailto:alessandro.pisa%5B@%5Dgmail.com">Alessandro Pisa - @ale_pisa</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
             
         </footer>
     </div>
@@ -150,7 +152,7 @@
 <!-- End of social buttons -->
 
 
-    <script>jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
+    <script>$('a.image-reference:not(.islink)').colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script>
     <!-- fancy dates -->
     <script>
     moment.locale("it");
