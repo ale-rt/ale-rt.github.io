@@ -8196,3 +8196,14 @@ article.post-micro {
         display: none;
     }
 }
+
+body {
+  font-size: 14px;
+}
+.navbar-brand #blog-title {
+  padding: 20px 0;
+  font-size: 22px;
+}
+.navbar-nav {
+  font-size: 22px;
+}
