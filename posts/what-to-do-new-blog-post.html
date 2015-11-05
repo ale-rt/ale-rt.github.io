@@ -2,28 +2,27 @@
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
 <head>
 <meta charset="utf-8">
-<base href="http://ale-rt.github.io/posts/notes-on-plone5-migration.html">
+<base href="http://ale-rt.github.io/posts/what-to-do-new-blog-post.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Notes on Plone5 migration | @ale_pisa</title>
+<title>What to do when I want to write a new blog post | @ale_pisa</title>
 <link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <meta content="#5670d4" name="theme-color">
 <link rel="alternate" type="application/rss+xml" title="RSS (en)" href="../rss.xml">
 <link rel="alternate" type="application/rss+xml" title="RSS (it)" href="../it/rss.xml">
-<link rel="canonical" href="http://ale-rt.github.io/posts/notes-on-plone5-migration.html">
+<link rel="canonical" href="http://ale-rt.github.io/posts/what-to-do-new-blog-post.html">
 <!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><meta name="author" content="Alessandro Pisa - @ale_pisa">
-<link rel="prev" href="how-to-exclude-pages-from-nikola-sitemap.html" title="How to exclude pages from Nikola sitemap" type="text/html">
-<link rel="next" href="what-to-do-new-blog-post.html" title="What to do when I want to write a new blog post" type="text/html">
+<link rel="prev" href="notes-on-plone5-migration.html" title="Notes on Plone5 migration" type="text/html">
 <meta property="og:site_name" content="@ale_pisa">
-<meta property="og:title" content="Notes on Plone5 migration">
-<meta property="og:url" content="http://ale-rt.github.io/posts/notes-on-plone5-migration.html">
-<meta property="og:description" content="Plone 5.0b1 is out
-Caveat: This is work in progress.
-The First beta of Plone 5 is in the wild and is performing really good.
-It is time to start migrating our products.
-On this page I am going to link">
+<meta property="og:title" content="What to do when I want to write a new blog post">
+<meta property="og:url" content="http://ale-rt.github.io/posts/what-to-do-new-blog-post.html">
+<meta property="og:description" content="I should update this site more often :)
+This is mainly a note for myself...
+Usually it takes a long time between two of my posts,
+so probably many Nikola releases appeared.
+So before starting I think ">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2015-04-04T14:17:02+02:00">
-<meta property="article:tag" content="Plone">
+<meta property="article:published_time" content="2015-11-05T22:56:08+01:00">
+<meta property="article:tag" content="Nikola">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -67,7 +66,7 @@ On this page I am going to link">
                 
                     
     <li>
-    <a href="notes-on-plone5-migration.md" id="sourcelink">Source</a>
+    <a href="what-to-do-new-blog-post.md" id="sourcelink">Source</a>
     </li>
 
                 
@@ -82,82 +81,64 @@ On this page I am going to link">
         <div class="row">
             
             
-<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Notes on Plone5 migration</a></h1>
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">What to do when I want to write a new blog post</a></h1>
 
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn">
                     Alessandro Pisa - @ale_pisa
             </span></p>
-            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2015-04-04T14:17:02+02:00" itemprop="datePublished" title="2015-04-04 14:17">2015-04-04 14:17</time></a></p>
+            <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2015-11-05T22:56:08+01:00" itemprop="datePublished" title="2015-11-05 22:56">2015-11-05 22:56</time></a></p>
                 <p class="commentline">
         
 </p>
-<div class="g-commentcount" data-href="/posts/notes-on-plone5-migration.html"></div>
-<script src="https://apis.google.com/js/plusone.js"></script><p class="sourceline"><a href="notes-on-plone5-migration.md" id="sourcelink">Source</a></p>
+<div class="g-commentcount" data-href="/posts/what-to-do-new-blog-post.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script><p class="sourceline"><a href="what-to-do-new-blog-post.md" id="sourcelink">Source</a></p>
 
         </div>
         
 
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
-<h2>Plone 5.0b1 is out</h2>
-<p><strong>Caveat</strong>: This is <strong>work in progress</strong>.</p>
-<p>The First beta of Plone 5 is in the wild and is performing really good.</p>
-<p>It is time to start migrating our products.</p>
-<p>On this page I am going to link all the resources I am finding
-about porting code from Plone 4 to Plone 5.</p>
-<h4>Changed imports</h4>
-<p>I will try to keep this list up to date.</p>
-<h5>Import zope IIntIds from zope.intid (was zope.app.intid)</h5>
-<pre class="code literal-block"><span class="gd">-from zope.app.intid.interfaces import IIntIds</span>
-<span class="gi">+from zope.intid.interfaces import IIntIds</span>
+<h4>I should update this site more often :)</h4>
+<p><em>This is mainly a note for myself...</em></p>
+<p>Usually it takes a long time between two of my posts,
+so probably many Nikola releases appeared.</p>
+<p>So before starting I think it is good idea to upgrade :p</p>
+<p>What I do is something like this:</p>
+<pre class="code literal-block"><span class="nb">cd </span>ale-rt.github.io.builder/
+. bin/activate
+pip install -U Nikola
+pip freeze &gt; requirements.txt
+git diff
 </pre>
 
 
-<h4>Products you will not need anymore</h4>
-<p>There a re some products that have been included/superseeded
-by Plone5 default packages.</p>
-<p>Here a list of those and some instructions on how to remove them.</p>
-<h5>wildcard.foldercontents</h5>
-<p>Many of my sites where using <strong>wildcard.foldercontents</strong>.</p>
-<p>This is enough in most cases (not all):</p>
-<ul>
-<li>remove <code>wildcard.foldercontents</code> your buildouts</li>
-<li>remove <code>wildcard.foldercontents</code> in your setup.py files</li>
-<li>remove <code>&lt;dependency&gt;profile-wildcard.foldercontents:default&lt;/dependency&gt;</code>
-   in your metadata.xml files</li>
-</ul>
-<p>In some other case you may have to search deeper in your code
-(python imports, template customizations, ...)</p>
-<h4>Theme migration</h4>
-<p>If your Plone 4 theme was based on "Sunburst Theme"
-remember to modify this: it should be based on "Plone Default".</p>
-<p>You should do something similar:</p>
-<pre class="code literal-block"><span class="gd">- &lt;skin-path name="My Site Theme" based-on="Sunburst Theme"&gt;</span>
-<span class="gi">+ &lt;skin-path name="My Site Theme" based-on="Plone Default"&gt;</span>
+<p>Yeah, I know, I should add this to a Makefile ;)</p>
+<p>Then in one console I start nikola auto:</p>
+<pre class="code literal-block"><span class="nb">cd </span>ale-rt
+nikola auto
 </pre>
 
 
-<h4>Portlets compatibility</h4>
-<p>Do you want to port your portlets to Plone5?
-You have to port the to the new z3c.form machinery.
-Luckily <a href="http://ale-rt.github.io/posts/how-to-port-plone4-portlets-to-plone5.html">this is really easy</a></p>
+<p>And on another one I add a new post:</p>
+<pre class="code literal-block">nikola new_post -f markdown -2 -t <span class="s2">"What to do when I want to write a new blog post"</span>
+</pre>
+
+
+<p>After that, if everything goes right I push my commits.</p>
 </div>
     </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
-<li><a class="tag p-category" href="../categories/plone.html" rel="tag">Plone</a></li>
+<li><a class="tag p-category" href="../categories/nikola.html" rel="tag">Nikola</a></li>
         </ul>
 <ul class="pager hidden-print">
 <li class="previous">
-                <a href="how-to-exclude-pages-from-nikola-sitemap.html" rel="prev" title="How to exclude pages from Nikola sitemap">Previous post</a>
-            </li>
-            <li class="next">
-                <a href="what-to-do-new-blog-post.html" rel="next" title="What to do when I want to write a new blog post">Next post</a>
+                <a href="notes-on-plone5-migration.html" rel="prev" title="Notes on Plone5 migration">Previous post</a>
             </li>
         </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
         
         
-<script src="https://apis.google.com/js/plusone.js"></script><div class="g-comments" data-href="http://ale-rt.github.io/posts/notes-on-plone5-migration.html" data-first_party_property="BLOGGER" data-view_type="FILTERED_POSTMOD">
+<script src="https://apis.google.com/js/plusone.js"></script><div class="g-comments" data-href="http://ale-rt.github.io/posts/what-to-do-new-blog-post.html" data-first_party_property="BLOGGER" data-view_type="FILTERED_POSTMOD">
 </div>
 
 

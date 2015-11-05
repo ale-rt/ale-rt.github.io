@@ -3,3 +3,4 @@ Sitemap: http://ale-rt.github.io/sitemapindex.xml
 User-Agent: *
 Disallow: /404.html
 Disallow: /it/404.html
+Host: ale-rt.github.io

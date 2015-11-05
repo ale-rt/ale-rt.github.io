@@ -68,7 +68,50 @@
             
 
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/notes-on-plone5-migration.html" class="u-url">Notes on Plone5 migration</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/what-to-do-new-blog-post.html" class="u-url">What to do when I want to write a new blog post</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn">
+                Alessandro Pisa - @ale_pisa
+            </span></p>
+            <p class="dateline"><a href="../posts/what-to-do-new-blog-post.html" rel="bookmark"><time class="published dt-published" datetime="2015-11-05T22:56:08+01:00" title="2015-11-05 22:56">2015-11-05 22:56</time></a></p>
+                <p class="commentline">
+        
+</p>
+<div class="g-commentcount" data-href="/it/posts/what-to-do-new-blog-post.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script>
+</div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<h4>I should update this site more often :)</h4>
+<p><em>This is mainly a note for myself...</em></p>
+<p>Usually it takes a long time between two of my posts,
+so probably many Nikola releases appeared.</p>
+<p>So before starting I think it is good idea to upgrade :p</p>
+<p>What I do is something like this:</p>
+<pre class="code literal-block"><span class="nb">cd </span>ale-rt.github.io.builder/
+. bin/activate
+pip install -U Nikola
+pip freeze &gt; requirements.txt
+git diff
+</pre>
+
+
+<p>Yeah, I know, I should add this to a Makefile ;)</p>
+<p>Then in one console I start nikola auto:</p>
+<pre class="code literal-block"><span class="nb">cd </span>ale-rt
+nikola auto
+</pre>
+
+
+<p>And on another one I add a new post:</p>
+<pre class="code literal-block">nikola new_post -f markdown -2 -t <span class="s2">"What to do when I want to write a new blog post"</span>
+</pre>
+
+
+<p>After that, if everything goes right I push my commits.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/notes-on-plone5-migration.html" class="u-url">Notes on Plone5 migration</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn">
                 Alessandro Pisa - @ale_pisa
