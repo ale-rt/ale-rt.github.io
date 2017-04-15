@@ -2,12 +2,12 @@
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
 <head>
 <meta charset="utf-8">
-<base href="http://ale-rt.github.io/blog/index.html">
 <meta name="description" content="Static site with moving thoughts">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>@ale_pisa</title>
 <link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
-<meta content="#5670d4" name="theme-color">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS (en)" href="../rss.xml">
 <link rel="alternate" type="application/rss+xml" title="RSS (it)" href="../it/rss.xml">
 <link rel="canonical" href="http://ale-rt.github.io/blog/index.html">
@@ -67,10 +67,84 @@
             
             
 
+    
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/what-to-do-new-blog-post.html" class="u-url">What to do when I want to write a new blog post</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/return-to-referer-on-cancel-z3cform.html" class="u-url">Return to referer on cancel -z3c.form</a></h1>
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Alessandro Pisa - @ale_pisa
+            </span></p>
+            <p class="dateline"><a href="../posts/return-to-referer-on-cancel-z3cform.html" rel="bookmark"><time class="published dt-published" datetime="2016-02-29T16:01:42+01:00" title="2016-02-29 16:01">2016-02-29 16:01</time></a></p>
+                <p class="commentline">
+        
+</p>
+<div class="g-commentcount" data-href="/posts/return-to-referer-on-cancel-z3cform.html"></div>
+<script src="https://apis.google.com/js/plusone.js"></script>
+</div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<h2>Return to referer when pressing cancel on z3c.form</h2>
+<p>The default cancel action on plone.app.z3cform
+is to just clear the form.
+This is hardly what you need in many cases.</p>
+<p>Probably you will want to direct the user on
+something similar to a thank you page,
+or maybe just close a containing pop up.</p>
+<p>In this post I will show you how to override
+the default behavior in order to redirect the user to the referer.</p>
+<p>Generally speaking you can get the HTTP referer from your zope request.</p>
+<p>The first thing to do is to store the referer url in to a form field.
+This can be done adding a <em>URI field</em> on your form.</p>
+<pre class="code literal-block"><span></span><span class="kn">from</span> <span class="nn">z3c.form.field</span> <span class="kn">import</span> <span class="n">Fields</span>
+<span class="kn">from</span> <span class="nn">zope.schema</span> <span class="kn">import</span> <span class="n">URI</span>
+
+<span class="k">class</span> <span class="nc">MyForm</span><span class="p">(</span><span class="n">Form</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">updateFields</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">''' Adds a referer that can be used when a cancel button is pressed</span>
+<span class="sd">        '''</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AddForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">updateFields</span><span class="p">()</span>
+        <span class="n">referer</span> <span class="o">=</span> <span class="n">URI</span><span class="p">(</span>
+            <span class="vm">__name__</span><span class="o">=</span><span class="s1">'referer'</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'HTTP_REFERER'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span> <span class="o">+=</span> <span class="n">Fields</span><span class="p">(</span><span class="n">referer</span><span class="p">)</span>
+</pre>
+
+
+<p>In addition we want to have that field hidden.</p>
+<p>To set up the referer widget, we override the <code>updateWidgets</code> method:</p>
+<pre class="code literal-block"><span></span>    def updateWidgets(self):
+        ''' Adds a referer to be used when a cancel button is pressed
+        '''
+        super(AddForm, self).updateWidgets()
+        self.widgets['referer'].mode = 'hidden'
+</pre>
+
+
+<p>The default behavior when you submit your form is to traverse to your
+<code>next_url</code>.</p>
+<pre class="code literal-block"><span></span>    def nextURL(self):
+        ''' The next URL
+        '''
+        if self.immediate_view is not None:
+            return self.immediate_view
+        referer = self.request.get('form.widgets.referer', '')  # custom code
+        if referer:                                             # custom code
+            return referer                                      # custom code
+        return self.context.absolute_url()
+</pre>
+
+
+<p>The three lines check if we have an <code>immediate_view</code> instance property.
+If we have it, it means a content has been created.</p>
+<p>Note: it would be better to push the referer to that instance property.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/what-to-do-new-blog-post.html" class="u-url">What to do when I want to write a new blog post</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Alessandro Pisa - @ale_pisa
             </span></p>
             <p class="dateline"><a href="../posts/what-to-do-new-blog-post.html" rel="bookmark"><time class="published dt-published" datetime="2015-11-05T22:56:08+01:00" title="2015-11-05 22:56">2015-11-05 22:56</time></a></p>
@@ -88,7 +162,7 @@
 so probably many Nikola releases appeared.</p>
 <p>So before starting I think it is good idea to upgrade :p</p>
 <p>What I do is something like this:</p>
-<pre class="code literal-block"><span class="nb">cd </span>ale-rt.github.io.builder/
+<pre class="code literal-block"><span></span><span class="nb">cd</span> ale-rt.github.io.builder/
 . bin/activate
 pip install -U Nikola
 pip freeze &gt; requirements.txt
@@ -98,13 +172,13 @@ git diff
 
 <p>Yeah, I know, I should add this to a Makefile ;)</p>
 <p>Then in one console I start nikola auto:</p>
-<pre class="code literal-block"><span class="nb">cd </span>ale-rt
+<pre class="code literal-block"><span></span><span class="nb">cd</span> ale-rt
 nikola auto
 </pre>
 
 
 <p>And on another one I add a new post:</p>
-<pre class="code literal-block">nikola new_post -f markdown -2 -t <span class="s2">"What to do when I want to write a new blog post"</span>
+<pre class="code literal-block"><span></span>nikola new_post -f markdown -2 -t <span class="s2">"What to do when I want to write a new blog post"</span>
 </pre>
 
 
@@ -113,7 +187,7 @@ nikola auto
     </div>
     </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/notes-on-plone5-migration.html" class="u-url">Notes on Plone5 migration</a></h1>
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Alessandro Pisa - @ale_pisa
             </span></p>
             <p class="dateline"><a href="../posts/notes-on-plone5-migration.html" rel="bookmark"><time class="published dt-published" datetime="2015-04-04T14:17:02+02:00" title="2015-04-04 14:17">2015-04-04 14:17</time></a></p>
@@ -134,7 +208,7 @@ about porting code from Plone 4 to Plone 5.</p>
 <h4>Changed imports</h4>
 <p>I will try to keep this list up to date.</p>
 <h5>Import zope IIntIds from zope.intid (was zope.app.intid)</h5>
-<pre class="code literal-block"><span class="gd">-from zope.app.intid.interfaces import IIntIds</span>
+<pre class="code literal-block"><span></span><span class="gd">-from zope.app.intid.interfaces import IIntIds</span>
 <span class="gi">+from zope.intid.interfaces import IIntIds</span>
 </pre>
 
@@ -158,7 +232,7 @@ by Plone5 default packages.</p>
 <p>If your Plone 4 theme was based on "Sunburst Theme"
 remember to modify this: it should be based on "Plone Default".</p>
 <p>You should do something similar:</p>
-<pre class="code literal-block"><span class="gd">- &lt;skin-path name="My Site Theme" based-on="Sunburst Theme"&gt;</span>
+<pre class="code literal-block"><span></span><span class="gd">- &lt;skin-path name="My Site Theme" based-on="Sunburst Theme"&gt;</span>
 <span class="gi">+ &lt;skin-path name="My Site Theme" based-on="Plone Default"&gt;</span>
 </pre>
 
@@ -171,7 +245,7 @@ Luckily <a href="http://ale-rt.github.io/posts/how-to-port-plone4-portlets-to-pl
     </div>
     </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/how-to-exclude-pages-from-nikola-sitemap.html" class="u-url">How to exclude pages from Nikola sitemap</a></h1>
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Alessandro Pisa - @ale_pisa
             </span></p>
             <p class="dateline"><a href="../posts/how-to-exclude-pages-from-nikola-sitemap.html" rel="bookmark"><time class="published dt-published" datetime="2014-12-28T11:59:12+01:00" title="2014-12-28 11:59">2014-12-28 11:59</time></a></p>
@@ -185,7 +259,7 @@ Luckily <a href="http://ale-rt.github.io/posts/how-to-port-plone4-portlets-to-pl
     <div>
 <h3>Short answer</h3>
 <p>You should have a line like this in your <code>conf.py</code> file:</p>
-<pre class="code literal-block"><span class="n">ROBOTS_EXCLUSIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s">"/404.html"</span><span class="p">,</span> <span class="s">"/*/404.html"</span><span class="p">]</span>
+<pre class="code literal-block"><span></span><span class="n">ROBOTS_EXCLUSIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"/404.html"</span><span class="p">,</span> <span class="s2">"/*/404.html"</span><span class="p">]</span>
 </pre>
 
 
@@ -197,7 +271,7 @@ Luckily <a href="http://ale-rt.github.io/posts/how-to-port-plone4-portlets-to-pl
 <p>Nikola is really smart and does a lot lot of stuff for you, for example it generates a <a href="../sitemap.xml"><code>sitemap.xml</code></a> that keeps track of all the pages it creates and manages.</p>
 <p>The <code>sitemap.xml</code> is used, for example, by search engine to index your website, so you really want to have it in order.</p>
 <p>If you let Nikola handle the 404.html page you will have to instruct the software to threat it in a special way, in order to not avoid those lines in your <code>sitemap.xml</code>:</p>
-<pre class="code literal-block"><span class="nt">&lt;url&gt;</span>
+<pre class="code literal-block"><span></span><span class="nt">&lt;url&gt;</span>
   <span class="nt">&lt;loc&gt;</span>http://ale-rt.github.io/it/404.html<span class="nt">&lt;/loc&gt;</span>
   <span class="nt">&lt;lastmod&gt;</span>2014-12-08<span class="nt">&lt;/lastmod&gt;</span>
 <span class="nt">&lt;/url&gt;</span>
@@ -208,13 +282,13 @@ Luckily <a href="http://ale-rt.github.io/posts/how-to-port-plone4-portlets-to-pl
 <p>Fiddling with the <code>ROBOTS_EXCLUSIONS</code> variable as shown at the beginning of the article will just make this work for you.</p>
 <h3>Final remark about wildcards</h3>
 <p>Not every robot understands wildcards. So, if your goal is just to exclude the <code>404.html</code> from the sitemap your are fine with the lines shown at the beginning of the article, otherwise you may want to be more explicit:</p>
-<pre class="code literal-block"><span class="n">ROBOTS_EXCLUSIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s">"/404.html"</span><span class="p">,</span> <span class="s">"/it/404.html"</span><span class="p">]</span>
+<pre class="code literal-block"><span></span><span class="n">ROBOTS_EXCLUSIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"/404.html"</span><span class="p">,</span> <span class="s2">"/it/404.html"</span><span class="p">]</span>
 </pre>
 </div>
     </div>
     </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/how-to-port-plone4-portlets-to-plone5.html" class="u-url">How-to port Plone4 portlets to Plone5</a></h1>
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Alessandro Pisa - @ale_pisa
             </span></p>
             <p class="dateline"><a href="../posts/how-to-port-plone4-portlets-to-plone5.html" rel="bookmark"><time class="published dt-published" datetime="2014-12-07T19:46:10+01:00" title="2014-12-07 19:46">2014-12-07 19:46</time></a></p>
@@ -228,7 +302,7 @@ Luckily <a href="http://ale-rt.github.io/posts/how-to-port-plone4-portlets-to-pl
     <div>
 <p><strong>Plone 5</strong> portlets are expected to use <strong>z3c.form</strong>, while in <strong>Plone&lt;=4</strong> portlets have been using <strong>formlib</strong>.</p>
 <p>Given this change you may find error like this:</p>
-<pre class="code literal-block"><span class="mi">2014</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">03</span> <span class="mi">14</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">42</span> <span class="k">ERROR</span> <span class="n">Zope</span><span class="p">.</span><span class="n">SiteErrorLog</span> <span class="mf">1417615182.70</span><span class="p">.</span><span class="mi">607391088835</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">Plone</span><span class="o">/++</span><span class="n">contextportlets</span><span class="o">++</span><span class="n">plone</span><span class="p">.</span><span class="n">rightcolumn</span><span class="o">/+/</span><span class="n">example</span><span class="p">.</span><span class="n">portlet</span>
+<pre class="code literal-block"><span></span><span class="mi">2014</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">03</span> <span class="mi">14</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">42</span> <span class="k">ERROR</span> <span class="n">Zope</span><span class="p">.</span><span class="n">SiteErrorLog</span> <span class="mf">1417615182.70</span><span class="p">.</span><span class="mi">607391088835</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">Plone</span><span class="o">/++</span><span class="n">contextportlets</span><span class="o">++</span><span class="n">plone</span><span class="p">.</span><span class="n">rightcolumn</span><span class="o">/+/</span><span class="n">example</span><span class="p">.</span><span class="n">portlet</span>
 <span class="n">Traceback</span> <span class="p">(</span><span class="n">innermost</span> <span class="n">last</span><span class="p">):</span>
   <span class="k">Module</span> <span class="nn">ZPublisher.Publish</span><span class="p">,</span> <span class="n">line</span> <span class="mi">138</span><span class="p">,</span> <span class="ow">in</span> <span class="n">publish</span>
   <span class="k">Module</span> <span class="nn">ZPublisher.mapply</span><span class="p">,</span> <span class="n">line</span> <span class="mi">77</span><span class="p">,</span> <span class="ow">in</span> <span class="n">mapply</span>
@@ -262,7 +336,7 @@ Luckily <a href="http://ale-rt.github.io/posts/how-to-port-plone4-portlets-to-pl
         <!--End of body content-->
 
         <footer id="footer">
-            Contents © 2015         <a href="mailto:alessandro.pisa%5B@%5Dgmail.com">Alessandro Pisa - @ale_pisa</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            Contents © 2017         <a href="mailto:alessandro.pisa%5B@%5Dgmail.com">Alessandro Pisa - @ale_pisa</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
             
         </footer>
 </div>

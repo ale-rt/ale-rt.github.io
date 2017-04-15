@@ -2,11 +2,11 @@
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="it">
 <head>
 <meta charset="utf-8">
-<base href="http://ale-rt.github.io/it/posts/notes-on-plone5-migration.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Notes on Plone5 migration | @ale_pisa</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
-<meta content="#5670d4" name="theme-color">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS (en)" href="../../rss.xml">
 <link rel="alternate" type="application/rss+xml" title="RSS (it)" href="../rss.xml">
 <link rel="canonical" href="http://ale-rt.github.io/it/posts/notes-on-plone5-migration.html">
@@ -86,7 +86,7 @@ On this page I am going to link">
 <article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="#" class="u-url">Notes on Plone5 migration</a></h1>
 
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                     Alessandro Pisa - @ale_pisa
             </span></p>
             <p class="dateline"><a href="#" rel="bookmark"><time class="published dt-published" datetime="2015-04-04T14:17:02+02:00" itemprop="datePublished" title="2015-04-04 14:17">2015-04-04 14:17</time></a></p>
@@ -110,7 +110,7 @@ about porting code from Plone 4 to Plone 5.</p>
 <h4>Changed imports</h4>
 <p>I will try to keep this list up to date.</p>
 <h5>Import zope IIntIds from zope.intid (was zope.app.intid)</h5>
-<pre class="code literal-block"><span class="gd">-from zope.app.intid.interfaces import IIntIds</span>
+<pre class="code literal-block"><span></span><span class="gd">-from zope.app.intid.interfaces import IIntIds</span>
 <span class="gi">+from zope.intid.interfaces import IIntIds</span>
 </pre>
 
@@ -134,7 +134,7 @@ by Plone5 default packages.</p>
 <p>If your Plone 4 theme was based on "Sunburst Theme"
 remember to modify this: it should be based on "Plone Default".</p>
 <p>You should do something similar:</p>
-<pre class="code literal-block"><span class="gd">- &lt;skin-path name="My Site Theme" based-on="Sunburst Theme"&gt;</span>
+<pre class="code literal-block"><span></span><span class="gd">- &lt;skin-path name="My Site Theme" based-on="Sunburst Theme"&gt;</span>
 <span class="gi">+ &lt;skin-path name="My Site Theme" based-on="Plone Default"&gt;</span>
 </pre>
 
@@ -167,7 +167,7 @@ Luckily <a href="http://ale-rt.github.io/posts/how-to-port-plone4-portlets-to-pl
         <!--End of body content-->
 
         <footer id="footer">
-            Contents © 2015         <a href="mailto:alessandro.pisa%5B@%5Dgmail.com">Alessandro Pisa - @ale_pisa</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            Contents © 2017         <a href="mailto:alessandro.pisa%5B@%5Dgmail.com">Alessandro Pisa - @ale_pisa</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
             
         </footer>
 </div>

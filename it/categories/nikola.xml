@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>@ale_pisa (Nikola)</title><link>http://ale-rt.github.io</link><description></description><atom:link href="http://ale-rt.github.io/it/categories/nikola.xml" type="application/rss+xml" rel="self"></atom:link><language>it</language><lastBuildDate>Thu, 05 Nov 2015 22:17:32 GMT</lastBuildDate><generator>https://getnikola.com/</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What to do when I want to write a new blog post</title><link>http://ale-rt.github.io/it/posts/what-to-do-new-blog-post.html</link><dc:creator>Alessandro Pisa - @ale_pisa</dc:creator><description>&lt;div&gt;&lt;h4&gt;I should update this site more often :)&lt;/h4&gt;
+<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>@ale_pisa (Articoli su Nikola)</title><link>http://ale-rt.github.io</link><description></description><atom:link type="application/rss+xml" rel="self" href="http://ale-rt.github.io/it/categories/nikola.xml"></atom:link><language>it</language><lastBuildDate>Sat, 15 Apr 2017 08:46:15 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What to do when I want to write a new blog post</title><link>http://ale-rt.github.io/it/posts/what-to-do-new-blog-post.html</link><dc:creator>Alessandro Pisa - @ale_pisa</dc:creator><description>&lt;div&gt;&lt;h4&gt;I should update this site more often :)&lt;/h4&gt;
 &lt;p&gt;&lt;em&gt;This is mainly a note for myself...&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Usually it takes a long time between two of my posts,
 so probably many Nikola releases appeared.&lt;/p&gt;
 &lt;p&gt;So before starting I think it is good idea to upgrade :p&lt;/p&gt;
 &lt;p&gt;What I do is something like this:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;ale-rt.github.io.builder/
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ale-rt.github.io.builder/
 . bin/activate
 pip install -U Nikola
 pip freeze &amp;gt; requirements.txt
@@ -15,19 +15,19 @@ git diff
 
 &lt;p&gt;Yeah, I know, I should add this to a Makefile ;)&lt;/p&gt;
 &lt;p&gt;Then in one console I start nikola auto:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;ale-rt
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ale-rt
 nikola auto
 &lt;/pre&gt;
 
 
 &lt;p&gt;And on another one I add a new post:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;nikola new_post -f markdown -2 -t &lt;span class="s2"&gt;"What to do when I want to write a new blog post"&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;nikola new_post -f markdown -2 -t &lt;span class="s2"&gt;"What to do when I want to write a new blog post"&lt;/span&gt;
 &lt;/pre&gt;
 
 
 &lt;p&gt;After that, if everything goes right I push my commits.&lt;/p&gt;&lt;/div&gt;</description><guid>http://ale-rt.github.io/it/posts/what-to-do-new-blog-post.html</guid><pubDate>Thu, 05 Nov 2015 21:56:08 GMT</pubDate></item><item><title>How to exclude pages from Nikola sitemap</title><link>http://ale-rt.github.io/it/posts/how-to-exclude-pages-from-nikola-sitemap.html</link><dc:creator>Alessandro Pisa - @ale_pisa</dc:creator><description>&lt;div&gt;&lt;h3&gt;Short answer&lt;/h3&gt;
 &lt;p&gt;You should have a line like this in your &lt;code&gt;conf.py&lt;/code&gt; file:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="n"&gt;ROBOTS_EXCLUSIONS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;"/404.html"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"/*/404.html"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ROBOTS_EXCLUSIONS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"/404.html"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"/*/404.html"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;
 
 
@@ -39,7 +39,7 @@ nikola auto
 &lt;p&gt;Nikola is really smart and does a lot lot of stuff for you, for example it generates a &lt;a href="http://ale-rt.github.io/sitemap.xml"&gt;&lt;code&gt;sitemap.xml&lt;/code&gt;&lt;/a&gt; that keeps track of all the pages it creates and manages.&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;sitemap.xml&lt;/code&gt; is used, for example, by search engine to index your website, so you really want to have it in order.&lt;/p&gt;
 &lt;p&gt;If you let Nikola handle the 404.html page you will have to instruct the software to threat it in a special way, in order to not avoid those lines in your &lt;code&gt;sitemap.xml&lt;/code&gt;:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="nt"&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;url&amp;gt;&lt;/span&gt;
   &lt;span class="nt"&gt;&amp;lt;loc&amp;gt;&lt;/span&gt;http://ale-rt.github.io/it/404.html&lt;span class="nt"&gt;&amp;lt;/loc&amp;gt;&lt;/span&gt;
   &lt;span class="nt"&gt;&amp;lt;lastmod&amp;gt;&lt;/span&gt;2014-12-08&lt;span class="nt"&gt;&amp;lt;/lastmod&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
@@ -50,5 +50,5 @@ nikola auto
 &lt;p&gt;Fiddling with the &lt;code&gt;ROBOTS_EXCLUSIONS&lt;/code&gt; variable as shown at the beginning of the article will just make this work for you.&lt;/p&gt;
 &lt;h3&gt;Final remark about wildcards&lt;/h3&gt;
 &lt;p&gt;Not every robot understands wildcards. So, if your goal is just to exclude the &lt;code&gt;404.html&lt;/code&gt; from the sitemap your are fine with the lines shown at the beginning of the article, otherwise you may want to be more explicit:&lt;/p&gt;
-&lt;pre class="code literal-block"&gt;&lt;span class="n"&gt;ROBOTS_EXCLUSIONS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;"/404.html"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"/it/404.html"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;pre class="code literal-block"&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ROBOTS_EXCLUSIONS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"/404.html"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"/it/404.html"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;</description><guid>http://ale-rt.github.io/it/posts/how-to-exclude-pages-from-nikola-sitemap.html</guid><pubDate>Sun, 28 Dec 2014 10:59:12 GMT</pubDate></item></channel></rss>
