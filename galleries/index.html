@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,18 +7,19 @@
 <link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
-<link rel="alternate" type="application/rss+xml" title="RSS (en)" href="../rss.xml">
-<link rel="alternate" type="application/rss+xml" title="RSS (it)" href="../it/rss.xml">
-<link rel="canonical" href="http://ale-rt.github.io/galleries/index.html">
+<link rel="alternate" type="application/rss+xml" title="RSS (en)" hreflang="en" href="../rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS (it)" hreflang="it" href="../it/rss.xml">
+<link rel="canonical" href="http://ale-rt.github.io/galleries/">
 <!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
 <style type="text/css">
+    #gallery_container {
+        position: relative;
+    }
     .image-block {
-        display: inline-block;
+        position: absolute;
     }
-    .flowr_row {
-        width: 100%;
-    }
-    </style>
+</style>
+<link rel="alternate" hreflang="it" href="../it/galleries/">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -74,15 +75,12 @@
             
             
     
+
 <nav class="breadcrumbs"><ul class="breadcrumb">
 <li>galleries</li>
 </ul></nav><h1>galleries</h1>
 
 <div id="gallery_container"></div>
-
-        
-<script src="https://apis.google.com/js/plusone.js"></script><div class="g-comments" data-href="None" data-first_party_property="BLOGGER" data-view_type="FILTERED_POSTMOD">
-</div>
 
 
 
@@ -90,7 +88,7 @@
         <!--End of body content-->
 
         <footer id="footer">
-            Contents © 2017         <a href="mailto:alessandro.pisa%5B@%5Dgmail.com">Alessandro Pisa - @ale_pisa</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            Contents © 2020         <a href="mailto:alessandro.pisa%5B@%5Dgmail.com">Alessandro Pisa - @ale_pisa</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
             
         </footer>
 </div>
@@ -99,47 +97,22 @@
 
             <script src="../assets/js/all-nocdn.js"></script><div class="share"></div>
 
-    <script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    <!-- fancy dates -->
+    <script>
     moment.locale("en");
     fancydates(1, "YYYY-MM-DD HH:mm");
-    </script><!-- end fancy dates --><script src="../assets/js/flowr.plugin.js"></script><script>
-jsonContent = [];
-$("#gallery_container").flowr({
-        data : jsonContent,
-        height : 180*.6,
-        padding: 5,
-        rows: -1,
-        render : function(params) {
-            // Just return a div, string or a dom object, anything works fine
-            img = $("<img />").attr({
-                'src': params.itemData.url_thumb,
-                'width' : params.width,
-                'height' : params.height
-            }).css('max-width', '100%');
-            link = $( "<a></a>").attr({
-                'href': params.itemData.url,
-                'class': 'image-reference'
-            });
-            div = $("<div />").addClass('image-block').attr({
-                'title': params.itemData.title,
-                'data-toggle': "tooltip",
-            });
-            link.append(img);
-            div.append(link);
-            div.hover(div.tooltip());
-            return div;
-        },
-        itemWidth : function(data) { return data.size.w; },
-        itemHeight : function(data) { return data.size.h; },
-        complete : function(params) {
-            if( jsonContent.length > params.renderedItems ) {
-                nextRenderList = jsonContent.slice( params.renderedItems );
-            }
-        }
-    });
-$("a.image-reference").colorbox({rel:"gal", maxWidth:"100%",maxHeight:"100%",scalePhotos:true});
-$('a.image-reference[href="'+window.location.hash.substring(1,1000)+'"]').click();
+    </script><!-- end fancy dates --><script src="../assets/js/justified-layout.min.js"></script><script src="../assets/js/gallery.min.js"></script><script>
+var jsonContent = [];
+var thumbnailSize = 180;
+renderGallery(jsonContent, thumbnailSize);
+window.addEventListener('resize', function(){renderGallery(jsonContent, thumbnailSize)});
 </script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script><script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Return to referer on cancel -z3c.form | @ale_pisa</title>
+<link href="../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS (en)" hreflang="en" href="../../../rss.xml">
+<link rel="alternate" type="application/rss+xml" title="RSS (it)" hreflang="it" href="../../rss.xml">
+<link rel="canonical" href="http://ale-rt.github.io/it/posts/return-to-referer-on-cancel-z3cform/">
+<!--[if lt IE 9]><script src="../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Alessandro Pisa - @ale_pisa">
+<link rel="prev" href="../what-to-do-new-blog-post/" title="What to do when I want to write a new blog post" type="text/html">
+<meta property="og:site_name" content="@ale_pisa">
+<meta property="og:title" content="Return to referer on cancel -z3c.form">
+<meta property="og:url" content="http://ale-rt.github.io/it/posts/return-to-referer-on-cancel-z3cform/">
+<meta property="og:description" content="Return to referer when pressing cancel on z3c.form
+The default cancel action on plone.app.z3cform
+is to just clear the form.
+This is hardly what you need in many cases.
+Probably you will want to direc">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2016-02-29T16:01:42+01:00">
+<link rel="alternate" hreflang="en" href="../../../posts/return-to-referer-on-cancel-z3cform/">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Vai al testo principale</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Attiva la navigazione</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://ale-rt.github.io/it/">
+
+                <span id="blog-title">@ale_pisa</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../archive.html">Blog</a>
+                </li>
+<li>
+<a href="../../categories/index.html">Tags</a>
+                </li>
+<li>
+<a href="../../search-results.html">Ricerca</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+            </li>
+<li><a href="http://ale-rt.github.io/" rel="alternate" hreflang="en">English</a></li>
+
+                
+                    
+    <li>
+    <a href="index.md" id="sourcelink">Sorgente</a>
+    </li>
+
+                
+            </ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Return to referer on cancel -z3c.form</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    Alessandro Pisa - @ale_pisa
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2016-02-29T16:01:42+01:00" itemprop="datePublished" title="2016-02-29 16:01">2016-02-29 16:01</time></a>
+            </p>
+                <p class="commentline">
+
+            
+        </p>
+<p class="sourceline"><a href="index.md" class="sourcelink">Sorgente</a></p>
+
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<h2>Return to referer when pressing cancel on z3c.form</h2>
+<p>The default cancel action on plone.app.z3cform
+is to just clear the form.
+This is hardly what you need in many cases.</p>
+<p>Probably you will want to direct the user on
+something similar to a thank you page,
+or maybe just close a containing pop up.</p>
+<p>In this post I will show you how to override
+the default behavior in order to redirect the user to the referer.</p>
+<p>Generally speaking you can get the HTTP referer from your zope request.</p>
+<p>The first thing to do is to store the referer url in to a form field.
+This can be done adding a <em>URI field</em> on your form.</p>
+<pre class="code literal-block"><span></span><span class="kn">from</span> <span class="nn">z3c.form.field</span> <span class="kn">import</span> <span class="n">Fields</span>
+<span class="kn">from</span> <span class="nn">zope.schema</span> <span class="kn">import</span> <span class="n">URI</span>
+
+<span class="k">class</span> <span class="nc">MyForm</span><span class="p">(</span><span class="n">Form</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">updateFields</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">''' Adds a referer that can be used when a cancel button is pressed</span>
+<span class="sd">        '''</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AddForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">updateFields</span><span class="p">()</span>
+        <span class="n">referer</span> <span class="o">=</span> <span class="n">URI</span><span class="p">(</span>
+            <span class="vm">__name__</span><span class="o">=</span><span class="s1">'referer'</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'HTTP_REFERER'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span> <span class="o">+=</span> <span class="n">Fields</span><span class="p">(</span><span class="n">referer</span><span class="p">)</span>
+</pre>
+
+
+<p>In addition we want to have that field hidden.</p>
+<p>To set up the referer widget, we override the <code>updateWidgets</code> method:</p>
+<pre class="code literal-block"><span></span><span class="err">    def updateWidgets(self):</span>
+<span class="err">        ''' Adds a referer to be used when a cancel button is pressed</span>
+<span class="err">        '''</span>
+<span class="err">        super(AddForm, self).updateWidgets()</span>
+<span class="err">        self.widgets['referer'].mode = 'hidden'</span>
+</pre>
+
+
+<p>The default behavior when you submit your form is to traverse to your
+<code>next_url</code>.</p>
+<pre class="code literal-block"><span></span><span class="err">    def nextURL(self):</span>
+<span class="err">        ''' The next URL</span>
+<span class="err">        '''</span>
+<span class="err">        if self.immediate_view is not None:</span>
+<span class="err">            return self.immediate_view</span>
+<span class="err">        referer = self.request.get('form.widgets.referer', '')  # custom code</span>
+<span class="err">        if referer:                                             # custom code</span>
+<span class="err">            return referer                                      # custom code</span>
+<span class="err">        return self.context.absolute_url()</span>
+</pre>
+
+
+<p>The three lines check if we have an <code>immediate_view</code> instance property.
+If we have it, it means a content has been created.</p>
+<p>Note: it would be better to push the referer to that instance property.</p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../what-to-do-new-blog-post/" rel="prev" title="What to do when I want to write a new blog post">Articolo precedente</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Commenti</h2>
+        
+
+        </section></article>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            Contents © 2020         <a href="mailto:alessandro.pisa%5B@%5Dgmail.com">Alessandro Pisa - @ale_pisa</a> - Powered by         <a href="http://getnikola.com" rel="nofollow">Nikola</a>         
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../../../assets/js/all-nocdn.js"></script><div class="share"></div>
+
+    <!-- fancy dates -->
+    <script>
+    moment.locale("it");
+    fancydates(1, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script><script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-2587939-13', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+</body>
+</html>
